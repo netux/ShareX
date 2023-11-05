@@ -174,7 +174,6 @@
     <Compile Include="FileUploaders\PomfUploader.cs" />
     <Compile Include="FileUploaders\SFTP.cs" />
     <Compile Include="FileUploaders\SharedFolderUploader.cs" />
-    <Compile Include="FileUploaders\Teknik.cs" />
     <Compile Include="FileUploaders\Transfersh.cs" />
     <Compile Include="FileUploaders\Uguu.cs" />
     <Compile Include="FileUploaders\Vault_ooo.cs" />
@@ -249,7 +248,6 @@
       <DependentUpon>UploadersConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FileUploaders\Pushbullet.cs" />
-    <Compile Include="FileUploaders\GfycatUploader.cs" />
     <Compile Include="CustomUploader\CustomUploaderInput.cs" />
     <Compile Include="Forms\YouTubeVideoOptionsForm.cs">
       <SubType>Form</SubType>
@@ -299,7 +297,6 @@
     <Compile Include="Helpers\TaskReferenceHelper.cs" />
     <Compile Include="BaseServices\TextUploaderService.cs" />
     <Compile Include="TextUploaders\Pastie.cs" />
-    <Compile Include="TextUploaders\TeknikPastebin.cs" />
     <Compile Include="Helpers\UploaderErrorInfo.cs" />
     <Compile Include="UploaderFactory.cs" />
     <Compile Include="ImageUploaders\Chevereto.cs" />
@@ -382,7 +379,6 @@
     <Compile Include="URLShorteners\FirebaseDynamicLinksURLShortener.cs" />
     <Compile Include="URLShorteners\KuttURLShortener.cs" />
     <Compile Include="URLShorteners\PolrURLShortener.cs" />
-    <Compile Include="URLShorteners\TeknikURLShortener.cs" />
     <Compile Include="URLShorteners\TwoGPURLShortener.cs" />
     <Compile Include="URLShorteners\AdFlyURLShortener.cs" />
     <Compile Include="URLShorteners\BitlyURLShortener.cs" />
@@ -1251,7 +1247,6 @@
     <None Include="Favicons\Pastie.png" />
     <None Include="Favicons\AzureStorage.png" />
     <None Include="Favicons\Plik.ico" />
-    <None Include="Favicons\Gfycat.png" />
     <None Include="Favicons\BackblazeB2.ico" />
     <None Include="Favicons\Firebase.ico" />
     <None Include="Favicons\YouTube.ico" />
@@ -1259,7 +1254,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentFTP">
-      <Version>46.0.2</Version>
+      <Version>48.0.1</Version>
     </PackageReference>
     <PackageReference Include="MegaApiClient">
       <Version>1.10.3</Version>
@@ -1268,14 +1263,11 @@
       <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="SSH.NET">
-      <Version>2020.0.2</Version>
+      <Version>2023.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Favicons\Kutt.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Favicons\Teknik.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\navigation-270-button-white.png" />
@@ -1294,13 +1286,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-      cd $(ProjectDir)APIKeys\
-
-      if not exist APIKeysLocal.cs (
-      type nul &gt; APIKeysLocal.cs
-      )
-    </PreBuildEvent>
+    <PreBuildEvent>if not exist "$(ProjectDir)APIKeys\APIKeysLocal.cs" (
+    type nul &gt; "$(ProjectDir)APIKeys\APIKeysLocal.cs"
+)</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

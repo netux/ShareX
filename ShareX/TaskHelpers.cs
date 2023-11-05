@@ -1390,13 +1390,18 @@ namespace ShareX
             }
         }
 
-        public static void PinToScreen(Image image, Point? location = null, PinToScreenOptions options = null)
+        public static void PinToScreen(Image image, PinToScreenOptions options = null)
+        {
+            PinToScreen(image, null, options);
+        }
+
+        public static void PinToScreen(Image image, Point? location, PinToScreenOptions options = null)
         {
             if (image != null)
             {
                 if (options == null)
                 {
-                    options = new PinToScreenOptions();
+                    options = Program.DefaultTaskSettings.ToolsSettings.PinToScreenOptions;
                 }
 
                 options.BackgroundColor = ShareXResources.Theme.LightBackgroundColor;
@@ -1898,7 +1903,7 @@ namespace ShareX
             }
         }
 
-        public static void HandleNativeMessagingInput(string filePath)
+        public static async Task HandleNativeMessagingInput(string filePath, TaskSettings taskSettings = null)
         {
             if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
             {
@@ -1907,23 +1912,78 @@ namespace ShareX
                 try
                 {
                     nativeMessagingInput = JsonHelpers.DeserializeFromFile<NativeMessagingInput>(filePath);
-
-                    File.Delete(filePath);
                 }
                 catch (Exception e)
                 {
                     DebugHelper.WriteException(e);
                 }
+                finally
+                {
+                    File.Delete(filePath);
+                }
 
                 if (nativeMessagingInput != null)
                 {
-                    if (!string.IsNullOrEmpty(nativeMessagingInput.URL) && URLHelpers.IsValidURL(nativeMessagingInput.URL))
+                    if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
+
+                    switch (nativeMessagingInput.Action)
                     {
-                        UploadManager.DownloadAndUploadFile(nativeMessagingInput.URL);
-                    }
-                    else if (!string.IsNullOrEmpty(nativeMessagingInput.Text))
-                    {
-                        UploadManager.UploadText(nativeMessagingInput.Text);
+                        // TEMP: For backward compatibility
+                        default:
+                            if (!string.IsNullOrEmpty(nativeMessagingInput.URL))
+                            {
+                                UploadManager.DownloadAndUploadFile(nativeMessagingInput.URL, taskSettings);
+                            }
+                            else if (!string.IsNullOrEmpty(nativeMessagingInput.Text))
+                            {
+                                UploadManager.UploadText(nativeMessagingInput.Text, taskSettings);
+                            }
+                            break;
+                        case NativeMessagingAction.UploadImage:
+                            if (!string.IsNullOrEmpty(nativeMessagingInput.URL))
+                            {
+                                Bitmap bmp = null;
+
+                                if (taskSettings.AdvancedSettings.ProcessImagesDuringExtensionUpload)
+                                {
+                                    try
+                                    {
+                                        bmp = await WebHelpers.DownloadImageAsync(nativeMessagingInput.URL);
+                                    }
+                                    catch
+                                    {
+                                    }
+                                }
+
+                                if (bmp != null)
+                                {
+                                    UploadManager.RunImageTask(bmp, taskSettings);
+                                }
+                                else
+                                {
+                                    UploadManager.DownloadAndUploadFile(nativeMessagingInput.URL, taskSettings);
+                                }
+                            }
+                            break;
+                        case NativeMessagingAction.UploadVideo:
+                        case NativeMessagingAction.UploadAudio:
+                            if (!string.IsNullOrEmpty(nativeMessagingInput.URL))
+                            {
+                                UploadManager.DownloadAndUploadFile(nativeMessagingInput.URL, taskSettings);
+                            }
+                            break;
+                        case NativeMessagingAction.UploadText:
+                            if (!string.IsNullOrEmpty(nativeMessagingInput.Text))
+                            {
+                                UploadManager.UploadText(nativeMessagingInput.Text, taskSettings);
+                            }
+                            break;
+                        case NativeMessagingAction.ShortenURL:
+                            if (!string.IsNullOrEmpty(nativeMessagingInput.URL))
+                            {
+                                UploadManager.ShortenURL(nativeMessagingInput.URL, taskSettings);
+                            }
+                            break;
                     }
                 }
             }

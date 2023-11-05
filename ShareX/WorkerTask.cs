@@ -654,7 +654,7 @@ namespace ShareX
             if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.PinToScreen))
             {
                 Image imageCopy = Image.CloneSafe();
-                TaskHelpers.PinToScreen(imageCopy);
+                TaskHelpers.PinToScreen(imageCopy, Info.TaskSettings.ToolsSettingsReference.PinToScreenOptions);
             }
 
             if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.SendImageToPrinter))
@@ -1074,11 +1074,18 @@ namespace ShareX
 
             if (!Info.TaskSettings.UploadSettings.FileUploadUseNamePattern)
             {
-                string fileName = URLHelpers.GetFileNameFromWebServer(url);
-
-                if (!string.IsNullOrEmpty(fileName))
+                try
                 {
-                    Info.FileName = FileHelpers.SanitizeFileName(fileName);
+                    string fileName = WebHelpers.GetFileNameFromWebServerAsync(url).GetAwaiter().GetResult();
+
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        Info.FileName = FileHelpers.SanitizeFileName(fileName);
+                    }
+                }
+                catch (Exception e)
+                {
+                    DebugHelper.WriteException(e);
                 }
             }
 
@@ -1092,7 +1099,7 @@ namespace ShareX
 
                 try
                 {
-                    URLHelpers.DownloadFile(url, Info.FilePath);
+                    WebHelpers.DownloadFileAsync(url, Info.FilePath).GetAwaiter().GetResult();
 
                     if (upload)
                     {

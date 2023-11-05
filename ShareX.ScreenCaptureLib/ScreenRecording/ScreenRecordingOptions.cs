@@ -101,6 +101,12 @@ namespace ShareX.ScreenCaptureLib
                 {
                     if (FFmpeg.VideoSource.Equals(FFmpegCaptureDevice.GDIGrab.Value, StringComparison.OrdinalIgnoreCase))
                     {
+                        if (FFmpeg.IsAudioSourceSelected)
+                        {
+                            AppendInputDevice(args, "dshow", true);
+                            args.Append($"-i audio={Helpers.EscapeCLIText(FFmpeg.AudioSource)} ");
+                        }
+
                         string x = isCustom ? "$area_x$" : CaptureArea.X.ToString();
                         string y = isCustom ? "$area_y$" : CaptureArea.Y.ToString();
                         string width = isCustom ? "$area_width$" : CaptureArea.Width.ToString();
@@ -115,15 +121,15 @@ namespace ShareX.ScreenCaptureLib
                         args.Append($"-video_size {width}x{height} ");
                         args.Append($"-draw_mouse {cursor} ");
                         args.Append("-i desktop ");
-
+                    }
+                    else if (FFmpeg.VideoSource.Equals(FFmpegCaptureDevice.DDAGrab.Value, StringComparison.OrdinalIgnoreCase))
+                    {
                         if (FFmpeg.IsAudioSourceSelected)
                         {
                             AppendInputDevice(args, "dshow", true);
                             args.Append($"-i audio={Helpers.EscapeCLIText(FFmpeg.AudioSource)} ");
                         }
-                    }
-                    else if (FFmpeg.VideoSource.Equals(FFmpegCaptureDevice.DDAGrab.Value, StringComparison.OrdinalIgnoreCase))
-                    {
+
                         Screen[] screens = Screen.AllScreens.OrderBy(x => !x.Primary).ToArray();
                         int monitorIndex = 0;
                         Rectangle captureArea = screens[0].Bounds;
@@ -150,7 +156,7 @@ namespace ShareX.ScreenCaptureLib
                         }
 
                         // https://ffmpeg.org/ffmpeg-filters.html#ddagrab
-                        AppendInputDevice(args, "lavfi", FFmpeg.IsAudioSourceSelected);
+                        AppendInputDevice(args, "lavfi", false);
                         args.Append("-i ddagrab=");
                         args.Append($"output_idx={monitorIndex}:"); // DXGI Output Index to capture.
                         args.Append($"draw_mouse={DrawCursor.ToString().ToLowerInvariant()}:"); // Whether to draw the mouse cursor.
@@ -261,6 +267,7 @@ namespace ShareX.ScreenCaptureLib
                         case FFmpegVideoCodec.h264_nvenc: // https://trac.ffmpeg.org/wiki/HWAccelIntro#NVENC
                         case FFmpegVideoCodec.hevc_nvenc:
                             args.Append($"-preset {FFmpeg.NVENC_Preset} ");
+                            args.Append($"-tune {FFmpeg.NVENC_Tune} ");
                             args.Append($"-b:v {FFmpeg.NVENC_Bitrate}k ");
                             args.Append("-movflags +faststart "); // This will move some information to the beginning of your file and allow the video to begin playing before it is completely downloaded by the viewer
                             break;
@@ -268,6 +275,7 @@ namespace ShareX.ScreenCaptureLib
                         case FFmpegVideoCodec.hevc_amf:
                             args.Append($"-usage {FFmpeg.AMF_Usage} ");
                             args.Append($"-quality {FFmpeg.AMF_Quality} ");
+                            args.Append($"-b:v {FFmpeg.AMF_Bitrate}k ");
                             args.Append("-pix_fmt yuv420p ");
                             break;
                         case FFmpegVideoCodec.h264_qsv: // https://trac.ffmpeg.org/wiki/Hardware/QuickSync

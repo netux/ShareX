@@ -206,6 +206,15 @@ namespace ShareX.ScreenCaptureLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        internal static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap control {
@@ -625,24 +634,6 @@ namespace ShareX.ScreenCaptureLib.Properties {
         internal static string FFmpegOptionsForm_buttonFFmpegBrowse_Click_Browse_for_ffmpeg_exe {
             get {
                 return ResourceManager.GetString("FFmpegOptionsForm_buttonFFmpegBrowse_Click_Browse_for_ffmpeg_exe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bitrate: {0}k.
-        /// </summary>
-        internal static string FFmpegOptionsForm_UpdateUI_Bitrate___0_k {
-            get {
-                return ResourceManager.GetString("FFmpegOptionsForm_UpdateUI_Bitrate___0_k", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Quality:.
-        /// </summary>
-        internal static string FFmpegOptionsForm_UpdateUI_Quality_ {
-            get {
-                return ResourceManager.GetString("FFmpegOptionsForm_UpdateUI_Quality_", resourceCulture);
             }
         }
         
@@ -2233,6 +2224,15 @@ namespace ShareX.ScreenCaptureLib.Properties {
         internal static string WebpageCaptureForm_UpdateControls_Stop {
             get {
                 return ResourceManager.GetString("WebpageCaptureForm_UpdateControls_Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to reset options?.
+        /// </summary>
+        internal static string WouldYouLikeToResetOptions {
+            get {
+                return ResourceManager.GetString("WouldYouLikeToResetOptions", resourceCulture);
             }
         }
         

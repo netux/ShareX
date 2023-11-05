@@ -194,6 +194,7 @@ namespace ShareX.UploadersLib
             this.tvOneDrive = new System.Windows.Forms.TreeView();
             this.lblOneDriveFolderID = new System.Windows.Forms.Label();
             this.cbOneDriveCreateShareableLink = new System.Windows.Forms.CheckBox();
+            this.cbOneDriveUseDirectLink = new System.Windows.Forms.CheckBox();
             this.oAuth2OneDrive = new ShareX.UploadersLib.OAuthControl();
             this.tpGoogleDrive = new System.Windows.Forms.TabPage();
             this.oauth2GoogleDrive = new ShareX.UploadersLib.OAuthLoopbackControl();
@@ -299,13 +300,6 @@ namespace ShareX.UploadersLib
             this.lblB2UploadPath = new System.Windows.Forms.Label();
             this.lblB2ApplicationKey = new System.Windows.Forms.Label();
             this.lblB2ApplicationKeyId = new System.Windows.Forms.Label();
-            this.tpGfycat = new System.Windows.Forms.TabPage();
-            this.txtGfycatTitle = new System.Windows.Forms.TextBox();
-            this.lblGfycatTitle = new System.Windows.Forms.Label();
-            this.cbGfycatKeepAudio = new System.Windows.Forms.CheckBox();
-            this.cbGfycatIsPublic = new System.Windows.Forms.CheckBox();
-            this.atcGfycatAccountType = new ShareX.UploadersLib.AccountTypeControl();
-            this.oauth2Gfycat = new ShareX.UploadersLib.OAuthControl();
             this.tpMega = new System.Windows.Forms.TabPage();
             this.btnMegaRefreshFolders = new System.Windows.Forms.Button();
             this.lblMegaStatus = new System.Windows.Forms.Label();
@@ -377,21 +371,6 @@ namespace ShareX.UploadersLib
             this.txtLambdaApiKey = new System.Windows.Forms.TextBox();
             this.lblLambdaUploadURL = new System.Windows.Forms.Label();
             this.cbLambdaUploadURL = new System.Windows.Forms.ComboBox();
-            this.tpTeknik = new System.Windows.Forms.TabPage();
-            this.nudTeknikExpirationLength = new System.Windows.Forms.NumericUpDown();
-            this.cbTeknikExpirationUnit = new System.Windows.Forms.ComboBox();
-            this.lblTeknikExpiration = new System.Windows.Forms.Label();
-            this.lblTeknikUrlShortenerAPIUrl = new System.Windows.Forms.Label();
-            this.tbTeknikUrlShortenerAPIUrl = new System.Windows.Forms.TextBox();
-            this.lblTeknikPasteAPIUrl = new System.Windows.Forms.Label();
-            this.tbTeknikPasteAPIUrl = new System.Windows.Forms.TextBox();
-            this.lblTeknikAuthUrl = new System.Windows.Forms.Label();
-            this.tbTeknikAuthUrl = new System.Windows.Forms.TextBox();
-            this.cbTeknikGenDeleteKey = new System.Windows.Forms.CheckBox();
-            this.cbTeknikEncrypt = new System.Windows.Forms.CheckBox();
-            this.lblTeknikUploadAPIUrl = new System.Windows.Forms.Label();
-            this.tbTeknikUploadAPIUrl = new System.Windows.Forms.TextBox();
-            this.oauthTeknik = new ShareX.UploadersLib.OAuthControl();
             this.tpPomf = new System.Windows.Forms.TabPage();
             this.txtPomfResultURL = new System.Windows.Forms.TextBox();
             this.txtPomfUploadURL = new System.Windows.Forms.TextBox();
@@ -665,7 +644,6 @@ namespace ShareX.UploadersLib
             this.gbGoogleCloudStorageAdvanced.SuspendLayout();
             this.tpAzureStorage.SuspendLayout();
             this.tpBackblazeB2.SuspendLayout();
-            this.tpGfycat.SuspendLayout();
             this.tpMega.SuspendLayout();
             this.tpOwnCloud.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtOwnCloudExpiryTime)).BeginInit();
@@ -676,8 +654,6 @@ namespace ShareX.UploadersLib
             this.tpJira.SuspendLayout();
             this.gbJiraServer.SuspendLayout();
             this.tpLambda.SuspendLayout();
-            this.tpTeknik.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTeknikExpirationLength)).BeginInit();
             this.tpPomf.SuspendLayout();
             this.tpSeafile.SuspendLayout();
             this.grpSeafileShareSettings.SuspendLayout();
@@ -1249,7 +1225,6 @@ namespace ShareX.UploadersLib
             this.tcFileUploaders.Controls.Add(this.tpGoogleCloudStorage);
             this.tcFileUploaders.Controls.Add(this.tpAzureStorage);
             this.tcFileUploaders.Controls.Add(this.tpBackblazeB2);
-            this.tcFileUploaders.Controls.Add(this.tpGfycat);
             this.tcFileUploaders.Controls.Add(this.tpMega);
             this.tcFileUploaders.Controls.Add(this.tpOwnCloud);
             this.tcFileUploaders.Controls.Add(this.tpMediaFire);
@@ -1258,7 +1233,6 @@ namespace ShareX.UploadersLib
             this.tcFileUploaders.Controls.Add(this.tpHostr);
             this.tcFileUploaders.Controls.Add(this.tpJira);
             this.tcFileUploaders.Controls.Add(this.tpLambda);
-            this.tcFileUploaders.Controls.Add(this.tpTeknik);
             this.tcFileUploaders.Controls.Add(this.tpPomf);
             this.tcFileUploaders.Controls.Add(this.tpSeafile);
             this.tcFileUploaders.Controls.Add(this.tpStreamable);
@@ -1738,6 +1712,7 @@ namespace ShareX.UploadersLib
             this.tpOneDrive.Controls.Add(this.tvOneDrive);
             this.tpOneDrive.Controls.Add(this.lblOneDriveFolderID);
             this.tpOneDrive.Controls.Add(this.cbOneDriveCreateShareableLink);
+            this.tpOneDrive.Controls.Add(this.cbOneDriveUseDirectLink);
             this.tpOneDrive.Controls.Add(this.oAuth2OneDrive);
             resources.ApplyResources(this.tpOneDrive, "tpOneDrive");
             this.tpOneDrive.Name = "tpOneDrive";
@@ -1760,6 +1735,13 @@ namespace ShareX.UploadersLib
             this.cbOneDriveCreateShareableLink.Name = "cbOneDriveCreateShareableLink";
             this.cbOneDriveCreateShareableLink.UseVisualStyleBackColor = true;
             this.cbOneDriveCreateShareableLink.CheckedChanged += new System.EventHandler(this.cbOneDriveCreateShareableLink_CheckedChanged);
+            // 
+            // cbOneDriveUseDirectLink
+            // 
+            resources.ApplyResources(this.cbOneDriveUseDirectLink, "cbOneDriveUseDirectLink");
+            this.cbOneDriveUseDirectLink.Name = "cbOneDriveUseDirectLink";
+            this.cbOneDriveUseDirectLink.UseVisualStyleBackColor = true;
+            this.cbOneDriveUseDirectLink.CheckedChanged += new System.EventHandler(this.cbOneDriveUseDirectLink_CheckedChanged);
             // 
             // oAuth2OneDrive
             // 
@@ -2514,60 +2496,6 @@ namespace ShareX.UploadersLib
             resources.ApplyResources(this.lblB2ApplicationKeyId, "lblB2ApplicationKeyId");
             this.lblB2ApplicationKeyId.Name = "lblB2ApplicationKeyId";
             // 
-            // tpGfycat
-            // 
-            this.tpGfycat.BackColor = System.Drawing.SystemColors.Window;
-            this.tpGfycat.Controls.Add(this.txtGfycatTitle);
-            this.tpGfycat.Controls.Add(this.lblGfycatTitle);
-            this.tpGfycat.Controls.Add(this.cbGfycatKeepAudio);
-            this.tpGfycat.Controls.Add(this.cbGfycatIsPublic);
-            this.tpGfycat.Controls.Add(this.atcGfycatAccountType);
-            this.tpGfycat.Controls.Add(this.oauth2Gfycat);
-            resources.ApplyResources(this.tpGfycat, "tpGfycat");
-            this.tpGfycat.Name = "tpGfycat";
-            // 
-            // txtGfycatTitle
-            // 
-            resources.ApplyResources(this.txtGfycatTitle, "txtGfycatTitle");
-            this.txtGfycatTitle.Name = "txtGfycatTitle";
-            this.txtGfycatTitle.TextChanged += new System.EventHandler(this.txtGfycatTitle_TextChanged);
-            // 
-            // lblGfycatTitle
-            // 
-            resources.ApplyResources(this.lblGfycatTitle, "lblGfycatTitle");
-            this.lblGfycatTitle.Name = "lblGfycatTitle";
-            // 
-            // cbGfycatKeepAudio
-            // 
-            resources.ApplyResources(this.cbGfycatKeepAudio, "cbGfycatKeepAudio");
-            this.cbGfycatKeepAudio.Name = "cbGfycatKeepAudio";
-            this.cbGfycatKeepAudio.UseVisualStyleBackColor = true;
-            this.cbGfycatKeepAudio.CheckedChanged += new System.EventHandler(this.cbGfycatKeepAudio_CheckedChanged);
-            // 
-            // cbGfycatIsPublic
-            // 
-            resources.ApplyResources(this.cbGfycatIsPublic, "cbGfycatIsPublic");
-            this.cbGfycatIsPublic.Name = "cbGfycatIsPublic";
-            this.cbGfycatIsPublic.UseVisualStyleBackColor = true;
-            this.cbGfycatIsPublic.CheckedChanged += new System.EventHandler(this.cbGfycatIsPublic_CheckedChanged);
-            // 
-            // atcGfycatAccountType
-            // 
-            resources.ApplyResources(this.atcGfycatAccountType, "atcGfycatAccountType");
-            this.atcGfycatAccountType.Name = "atcGfycatAccountType";
-            this.atcGfycatAccountType.SelectedAccountType = ShareX.UploadersLib.AccountType.Anonymous;
-            this.atcGfycatAccountType.AccountTypeChanged += new ShareX.UploadersLib.AccountTypeControl.AccountTypeChangedEventHandler(this.atcGfycatAccountType_AccountTypeChanged);
-            // 
-            // oauth2Gfycat
-            // 
-            resources.ApplyResources(this.oauth2Gfycat, "oauth2Gfycat");
-            this.oauth2Gfycat.Name = "oauth2Gfycat";
-            this.oauth2Gfycat.UserInfo = null;
-            this.oauth2Gfycat.OpenButtonClicked += new ShareX.UploadersLib.OAuthControl.OpenButtonClickedEventHandler(this.oauth2Gfycat_OpenButtonClicked);
-            this.oauth2Gfycat.CompleteButtonClicked += new ShareX.UploadersLib.OAuthControl.CompleteButtonClickedEventHandler(this.oauth2Gfycat_CompleteButtonClicked);
-            this.oauth2Gfycat.ClearButtonClicked += new ShareX.UploadersLib.OAuthControl.ClearButtonclickedEventHandler(this.oauth2Gfycat_ClearButtonClicked);
-            this.oauth2Gfycat.RefreshButtonClicked += new ShareX.UploadersLib.OAuthControl.RefreshButtonClickedEventHandler(this.oauth2Gfycat_RefreshButtonClicked);
-            // 
             // tpMega
             // 
             this.tpMega.BackColor = System.Drawing.SystemColors.Window;
@@ -3081,118 +3009,6 @@ namespace ShareX.UploadersLib
             resources.ApplyResources(this.cbLambdaUploadURL, "cbLambdaUploadURL");
             this.cbLambdaUploadURL.Name = "cbLambdaUploadURL";
             this.cbLambdaUploadURL.SelectedIndexChanged += new System.EventHandler(this.cbLambdaUploadURL_SelectedIndexChanged);
-            // 
-            // tpTeknik
-            // 
-            this.tpTeknik.BackColor = System.Drawing.SystemColors.Window;
-            this.tpTeknik.Controls.Add(this.nudTeknikExpirationLength);
-            this.tpTeknik.Controls.Add(this.cbTeknikExpirationUnit);
-            this.tpTeknik.Controls.Add(this.lblTeknikExpiration);
-            this.tpTeknik.Controls.Add(this.lblTeknikUrlShortenerAPIUrl);
-            this.tpTeknik.Controls.Add(this.tbTeknikUrlShortenerAPIUrl);
-            this.tpTeknik.Controls.Add(this.lblTeknikPasteAPIUrl);
-            this.tpTeknik.Controls.Add(this.tbTeknikPasteAPIUrl);
-            this.tpTeknik.Controls.Add(this.lblTeknikAuthUrl);
-            this.tpTeknik.Controls.Add(this.tbTeknikAuthUrl);
-            this.tpTeknik.Controls.Add(this.cbTeknikGenDeleteKey);
-            this.tpTeknik.Controls.Add(this.cbTeknikEncrypt);
-            this.tpTeknik.Controls.Add(this.lblTeknikUploadAPIUrl);
-            this.tpTeknik.Controls.Add(this.tbTeknikUploadAPIUrl);
-            this.tpTeknik.Controls.Add(this.oauthTeknik);
-            resources.ApplyResources(this.tpTeknik, "tpTeknik");
-            this.tpTeknik.Name = "tpTeknik";
-            // 
-            // nudTeknikExpirationLength
-            // 
-            resources.ApplyResources(this.nudTeknikExpirationLength, "nudTeknikExpirationLength");
-            this.nudTeknikExpirationLength.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nudTeknikExpirationLength.Name = "nudTeknikExpirationLength";
-            this.nudTeknikExpirationLength.ValueChanged += new System.EventHandler(this.nudTeknikExpirationLength_ValueChanged);
-            // 
-            // cbTeknikExpirationUnit
-            // 
-            this.cbTeknikExpirationUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTeknikExpirationUnit.FormattingEnabled = true;
-            resources.ApplyResources(this.cbTeknikExpirationUnit, "cbTeknikExpirationUnit");
-            this.cbTeknikExpirationUnit.Name = "cbTeknikExpirationUnit";
-            this.cbTeknikExpirationUnit.SelectedIndexChanged += new System.EventHandler(this.cbTeknikExpirationUnit_SelectedIndexChanged);
-            // 
-            // lblTeknikExpiration
-            // 
-            resources.ApplyResources(this.lblTeknikExpiration, "lblTeknikExpiration");
-            this.lblTeknikExpiration.Name = "lblTeknikExpiration";
-            // 
-            // lblTeknikUrlShortenerAPIUrl
-            // 
-            resources.ApplyResources(this.lblTeknikUrlShortenerAPIUrl, "lblTeknikUrlShortenerAPIUrl");
-            this.lblTeknikUrlShortenerAPIUrl.Name = "lblTeknikUrlShortenerAPIUrl";
-            // 
-            // tbTeknikUrlShortenerAPIUrl
-            // 
-            resources.ApplyResources(this.tbTeknikUrlShortenerAPIUrl, "tbTeknikUrlShortenerAPIUrl");
-            this.tbTeknikUrlShortenerAPIUrl.Name = "tbTeknikUrlShortenerAPIUrl";
-            this.tbTeknikUrlShortenerAPIUrl.TextChanged += new System.EventHandler(this.tbTeknikUrlShortenerAPIUrl_TextChanged);
-            // 
-            // lblTeknikPasteAPIUrl
-            // 
-            resources.ApplyResources(this.lblTeknikPasteAPIUrl, "lblTeknikPasteAPIUrl");
-            this.lblTeknikPasteAPIUrl.Name = "lblTeknikPasteAPIUrl";
-            // 
-            // tbTeknikPasteAPIUrl
-            // 
-            resources.ApplyResources(this.tbTeknikPasteAPIUrl, "tbTeknikPasteAPIUrl");
-            this.tbTeknikPasteAPIUrl.Name = "tbTeknikPasteAPIUrl";
-            this.tbTeknikPasteAPIUrl.TextChanged += new System.EventHandler(this.tbTeknikPasteAPIUrl_TextChanged);
-            // 
-            // lblTeknikAuthUrl
-            // 
-            resources.ApplyResources(this.lblTeknikAuthUrl, "lblTeknikAuthUrl");
-            this.lblTeknikAuthUrl.Name = "lblTeknikAuthUrl";
-            // 
-            // tbTeknikAuthUrl
-            // 
-            resources.ApplyResources(this.tbTeknikAuthUrl, "tbTeknikAuthUrl");
-            this.tbTeknikAuthUrl.Name = "tbTeknikAuthUrl";
-            this.tbTeknikAuthUrl.TextChanged += new System.EventHandler(this.tbTeknikAuthUrl_TextChanged);
-            // 
-            // cbTeknikGenDeleteKey
-            // 
-            resources.ApplyResources(this.cbTeknikGenDeleteKey, "cbTeknikGenDeleteKey");
-            this.cbTeknikGenDeleteKey.Name = "cbTeknikGenDeleteKey";
-            this.cbTeknikGenDeleteKey.UseVisualStyleBackColor = true;
-            this.cbTeknikGenDeleteKey.CheckedChanged += new System.EventHandler(this.cbTeknikGenDeleteKey_CheckedChanged);
-            // 
-            // cbTeknikEncrypt
-            // 
-            resources.ApplyResources(this.cbTeknikEncrypt, "cbTeknikEncrypt");
-            this.cbTeknikEncrypt.Name = "cbTeknikEncrypt";
-            this.cbTeknikEncrypt.UseVisualStyleBackColor = true;
-            this.cbTeknikEncrypt.CheckedChanged += new System.EventHandler(this.cbTeknikEncrypt_CheckedChanged);
-            // 
-            // lblTeknikUploadAPIUrl
-            // 
-            resources.ApplyResources(this.lblTeknikUploadAPIUrl, "lblTeknikUploadAPIUrl");
-            this.lblTeknikUploadAPIUrl.Name = "lblTeknikUploadAPIUrl";
-            // 
-            // tbTeknikUploadAPIUrl
-            // 
-            resources.ApplyResources(this.tbTeknikUploadAPIUrl, "tbTeknikUploadAPIUrl");
-            this.tbTeknikUploadAPIUrl.Name = "tbTeknikUploadAPIUrl";
-            this.tbTeknikUploadAPIUrl.TextChanged += new System.EventHandler(this.tbTeknikUploadAPIUrl_TextChanged);
-            // 
-            // oauthTeknik
-            // 
-            resources.ApplyResources(this.oauthTeknik, "oauthTeknik");
-            this.oauthTeknik.Name = "oauthTeknik";
-            this.oauthTeknik.UserInfo = null;
-            this.oauthTeknik.OpenButtonClicked += new ShareX.UploadersLib.OAuthControl.OpenButtonClickedEventHandler(this.oauthTeknik_OpenButtonClicked);
-            this.oauthTeknik.CompleteButtonClicked += new ShareX.UploadersLib.OAuthControl.CompleteButtonClickedEventHandler(this.oauthTeknik_CompleteButtonClicked);
-            this.oauthTeknik.ClearButtonClicked += new ShareX.UploadersLib.OAuthControl.ClearButtonclickedEventHandler(this.oauthTeknik_ClearButtonClicked);
-            this.oauthTeknik.RefreshButtonClicked += new ShareX.UploadersLib.OAuthControl.RefreshButtonClickedEventHandler(this.oauthTeknik_RefreshButtonClicked);
             // 
             // tpPomf
             // 
@@ -5029,8 +4845,6 @@ namespace ShareX.UploadersLib
             this.tpAzureStorage.PerformLayout();
             this.tpBackblazeB2.ResumeLayout(false);
             this.tpBackblazeB2.PerformLayout();
-            this.tpGfycat.ResumeLayout(false);
-            this.tpGfycat.PerformLayout();
             this.tpMega.ResumeLayout(false);
             this.tpMega.PerformLayout();
             this.tpOwnCloud.ResumeLayout(false);
@@ -5050,9 +4864,6 @@ namespace ShareX.UploadersLib
             this.gbJiraServer.PerformLayout();
             this.tpLambda.ResumeLayout(false);
             this.tpLambda.PerformLayout();
-            this.tpTeknik.ResumeLayout(false);
-            this.tpTeknik.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTeknikExpirationLength)).EndInit();
             this.tpPomf.ResumeLayout(false);
             this.tpPomf.PerformLayout();
             this.tpSeafile.ResumeLayout(false);
@@ -5350,6 +5161,7 @@ namespace ShareX.UploadersLib
         private System.Windows.Forms.Label lblHastebinSyntaxHighlighting;
         private System.Windows.Forms.Label lblHastebinCustomDomain;
         private System.Windows.Forms.CheckBox cbOneDriveCreateShareableLink;
+        private System.Windows.Forms.CheckBox cbOneDriveUseDirectLink;
         private System.Windows.Forms.Label lblOneDriveFolderID;
         private System.Windows.Forms.TreeView tvOneDrive;
         private System.Windows.Forms.Label lblLambdaApiKey;
@@ -5533,10 +5345,6 @@ namespace ShareX.UploadersLib
         private System.Windows.Forms.Label lblAmazonS3Endpoint;
         private System.Windows.Forms.CheckBox cbDropboxUseDirectLink;
         private System.Windows.Forms.CheckBox cbAmazonS3UsePathStyle;
-        private OAuthControl oauth2Gfycat;
-        private AccountTypeControl atcGfycatAccountType;
-        private System.Windows.Forms.CheckBox cbGfycatIsPublic;
-        internal System.Windows.Forms.TabPage tpGfycat;
         private System.Windows.Forms.Panel pFTPTransferMode;
         private System.Windows.Forms.RadioButton rbFTPTransferModeActive;
         private System.Windows.Forms.RadioButton rbFTPTransferModePassive;
@@ -5661,22 +5469,6 @@ namespace ShareX.UploadersLib
         private System.Windows.Forms.Label lblGooglePhotosCreateAlbumName;
         private System.Windows.Forms.TextBox txtGooglePhotosCreateAlbumName;
         private System.Windows.Forms.Button btnGooglePhotosCreateAlbum;
-        private System.Windows.Forms.CheckBox cbTeknikGenDeleteKey;
-        private System.Windows.Forms.CheckBox cbTeknikEncrypt;
-        private System.Windows.Forms.Label lblTeknikUploadAPIUrl;
-        private System.Windows.Forms.TextBox tbTeknikUploadAPIUrl;
-        private OAuthControl oauthTeknik;
-        private System.Windows.Forms.Label lblTeknikAuthUrl;
-        private System.Windows.Forms.TextBox tbTeknikAuthUrl;
-        internal System.Windows.Forms.TabPage tpTeknik;
-        private System.Windows.Forms.Label lblTeknikPasteAPIUrl;
-        private System.Windows.Forms.TextBox tbTeknikPasteAPIUrl;
-        private System.Windows.Forms.Label lblTeknikUrlShortenerAPIUrl;
-        private System.Windows.Forms.TextBox tbTeknikUrlShortenerAPIUrl;
-        private System.Windows.Forms.Label lblTeknikExpiration;
-        private System.Windows.Forms.ComboBox cbTeknikExpirationUnit;
-        private System.Windows.Forms.NumericUpDown nudTeknikExpirationLength;
-        private System.Windows.Forms.CheckBox cbGfycatKeepAudio;
         private System.Windows.Forms.GroupBox gbGoogleCloudStorageAdvanced;
         private System.Windows.Forms.Label lblGoogleCloudStorageStripExtension;
         private System.Windows.Forms.CheckBox cbGoogleCloudStorageStripExtensionText;
@@ -5688,8 +5480,6 @@ namespace ShareX.UploadersLib
         private System.Windows.Forms.ComboBox cbGoogleDriveSharedDrive;
         private System.Windows.Forms.TextBox txtKuttDomain;
         private System.Windows.Forms.Label lblKuttDomain;
-        private System.Windows.Forms.TextBox txtGfycatTitle;
-        private System.Windows.Forms.Label lblGfycatTitle;
         internal System.Windows.Forms.TabPage tpZeroWidthShortener;
         private System.Windows.Forms.TextBox txtZWSToken;
         private System.Windows.Forms.TextBox txtZWSURL;

@@ -329,9 +329,6 @@ Created folders:</value>
   <data name="Plik" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Favicons\Plik.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Gfycat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Favicons\Gfycat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="OAuthControl_OAuthControl_PasteVerificationCodeHere" xml:space="preserve">
     <value>Paste verification code here</value>
   </data>
@@ -385,9 +382,6 @@ Created folders:</value>
   </data>
   <data name="Dropbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Favicons\Dropbox.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Teknik" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Favicons\Teknik.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DuplicateNameNotAllowed" xml:space="preserve">
     <value>Duplicate name not allowed.</value>

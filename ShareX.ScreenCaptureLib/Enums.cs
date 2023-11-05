@@ -79,7 +79,10 @@ namespace ShareX.ScreenCaptureLib
 
     internal enum NodeShape
     {
-        Square, Circle, Diamond, CustomNode
+        Square,
+        Circle,
+        Diamond,
+        CustomNode
     }
 
     public enum FFmpegVideoCodec
@@ -145,57 +148,77 @@ namespace ShareX.ScreenCaptureLib
         [Description("Slower")]
         slower,
         [Description("Very slow")]
-        veryslow
+        veryslow,
+        [Description("Placebo")]
+        placebo
+    }
+
+    public enum FFmpegTune
+    {
+        film,
+        animation,
+        grain,
+        stillimage,
+        psnr,
+        ssim,
+        fastdecode,
+        zerolatency
     }
 
     public enum FFmpegNVENCPreset
     {
-        [Description("Default")]
-        @default,
-        [Description("High quality 2 passes")]
-        slow,
-        [Description("High quality 1 pass")]
-        medium,
-        [Description("High performance 1 pass")]
-        fast,
-        [Description("High performance")]
-        hp,
+        [Description("Fastest (Lowest quality)")]
+        p1,
+        [Description("Faster (Lower quality)")]
+        p2,
+        [Description("Fast (Low quality)")]
+        p3,
+        [Description("Medium (Medium quality)")]
+        p4,
+        [Description("Slow (Good quality)")]
+        p5,
+        [Description("Slower (Better quality)")]
+        p6,
+        [Description("Slowest (Best quality)")]
+        p7
+    }
+
+    public enum FFmpegNVENCTune
+    {
         [Description("High quality")]
         hq,
-        [Description("Bluray disk")]
-        bd,
         [Description("Low latency")]
         ll,
-        [Description("Low latency high quality")]
-        llhq,
-        [Description("Low latency high performance")]
-        llhp,
+        [Description("Ultra low latency")]
+        ull,
         [Description("Lossless")]
-        lossless,
-        [Description("Lossless high performance")]
-        losslesshp
+        lossless
     }
 
     public enum FFmpegAMFUsage
     {
-        [Description("Generic Transcoding")]
-        transcoding = 0,
-        [Description("Ultra Low Latency")]
-        ultralowlatency = 1,
-        [Description("Low Latency")]
-        lowlatency = 2,
+        [Description("Generic transcoding")]
+        transcoding,
+        [Description("Ultra low latency transcoding")]
+        ultralowlatency,
+        [Description("Low latency transcoding")]
+        lowlatency,
         [Description("Webcam")]
-        webcam = 3
+        webcam,
+        [Description("High quality transcoding")]
+        high_quality,
+        [Description("Low latency yet high quality transcoding")]
+        lowlatency_high_quality
     }
 
     public enum FFmpegAMFQuality
     {
-        [Description("Prefer Speed")]
-        speed = 0,
+        [Description("Prefer speed")]
+        speed,
         [Description("Balanced")]
-        balanced = 1,
-        [Description("Prefer Quality")]
-        quality = 2
+        balanced,
+        [Description("Prefer quality")]
+        quality
     }
 
     public enum FFmpegQSVPreset
@@ -216,14 +239,11 @@ namespace ShareX.ScreenCaptureLib
         veryslow
     }
 
-    public enum FFmpegTune
-    {
-        film, animation, grain, stillimage, psnr, ssim, fastdecode, zerolatency
-    }
-
     public enum FFmpegPaletteGenStatsMode
     {
-        full, diff
+        full,
+        diff,
+        single
     }
 
     public enum FFmpegPaletteUseDither
@@ -233,7 +253,10 @@ namespace ShareX.ScreenCaptureLib
         heckbert,
         floyd_steinberg,
         sierra2,
-        sierra2_4a
+        sierra2_4a,
+        sierra3,
+        burkes,
+        atkinson
     }
 
     public enum RegionCaptureMode
@@ -296,22 +319,6 @@ namespace ShareX.ScreenCaptureLib
         ToolCutOut
     }
 
-    public enum ScrollingCaptureScrollMethod // Localized
-    {
-        Automatic,
-        SendMessageScroll,
-        KeyPressPageDown,
-        MouseWheel
-    }
-
-    public enum ScrollingCaptureScrollTopMethod // Localized
-    {
-        All,
-        SendMessageTop,
-        KeyPressHome,
-        None
-    }
-
     public enum ImageEditorStartMode // Localized
     {
         AutoSize,
@@ -340,11 +347,21 @@ namespace ShareX.ScreenCaptureLib
 
     public enum ScreenRecordState
     {
-        Waiting, BeforeStart, AfterStart, AfterRecordingStart, RecordingEnd, Encoding
+        Waiting,
+        BeforeStart,
+        AfterStart,
+        AfterRecordingStart,
+        RecordingEnd,
+        Encoding
     }
 
     public enum ScreenRecordingStatus
     {
-        Waiting, Working, Recording, Paused, Stopped, Aborted
+        Waiting,
+        Working,
+        Recording,
+        Paused,
+        Stopped,
+        Aborted
     }
 }

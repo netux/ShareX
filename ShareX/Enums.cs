@@ -410,4 +410,14 @@ namespace ShareX
         ListView,
         ThumbnailView
     }
+
+    public enum NativeMessagingAction
+    {
+        None,
+        UploadImage,
+        UploadVideo,
+        UploadAudio,
+        UploadText,
+        ShortenURL
+    }
 }
